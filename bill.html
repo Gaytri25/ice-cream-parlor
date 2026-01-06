@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill - Ice Cream Parlor</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        .bill-container {
+            width: 80%;
+            margin: 50px auto;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .bill-container h1 {
+            color: #ff6600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #ffcc00;
+            color: black;
+        }
+        .btn {
+            background: #ff6600;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background: #ff3300;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bill-container">
+        <h1>Your Bill 🍦</h1>
+        
+        <table id="orderTable">
+            <tr>
+                <th>Flavor</th>
+                <th>Quantity</th>
+                <th>Price (₹)</th>
+            </tr>
+        </table>
+
+        <h2 id="totalAmount">Total Amount: ₹0</h2>
+        <button class="btn" onclick="window.print()">Print Bill</button>
+    </div>
+
+    <script>
+        // Fetch the orders data from the PHP backend
+        fetch('bill.php')
+            .then(response => response.json())  // Expecting JSON data
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);  // Show error if any
+                } else {
+                    // Process and display orders
+                    let orders = data.orders;
+                    let tableContent = '';
+                    let total = 0;
+                    
+                    orders.forEach(order => {
+                        tableContent += `<tr>
+                            <td>${order.flavor}</td>
+                            <td>${order.quantity}</td>
+                            <td>₹${order.price}</td>
+                        </tr>`;
+                        total += parseFloat(order.price);
+                    });
+
+                    document.getElementById('orderTable').innerHTML += tableContent;
+                    document.getElementById('totalAmount').innerHTML = `Total Amount: ₹${total}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+
+</body>
+</html>

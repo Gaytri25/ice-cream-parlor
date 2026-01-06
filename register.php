@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Ice Cream Parlor</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+
+    <style>
+        /* Reset Default Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Background Styling */
+        .bgimage {
+            width: 100%;
+            height: 100vh;
+            background: url('../img/icecream-bg.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Overlay */
+        .bgimage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Navigation Menu */
+        .menu {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2;
+        }
+
+        .leftmenu h4 {
+            color: #ffcc00;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .rightmenu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .rightmenu ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rightmenu ul li {
+            margin: 0 15px;
+        }
+
+        .rightmenu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .rightmenu ul li a:hover,
+        .rightmenu ul li a.active {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive Navigation */
+        @media screen and (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .rightmenu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            .rightmenu ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rightmenu ul li {
+                margin: 10px 0;
+            }
+        }
+
+        /* Registration Box */
+        .registerbox {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .registerbox h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .registerbox input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            background: #f5f5f5;
+        }
+
+        .registerbox input[type="submit"] {
+            background: #ffcc00;
+            color: black;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .registerbox input[type="submit"]:hover {
+            background: #ff9900;
+        }
+
+        .registerbox a {
+            display: block;
+            margin-top: 10px;
+            color: #ff6600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .registerbox a:hover {
+            color: #ff3300;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bgimage">
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <div class="leftmenu">
+                <h4>ICE CREAM</h4>
+            </div>
+            <div class="rightmenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="register.html" class="active">Sign Up</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="order1.html">Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="registerbox">
+            <h1>Create an Account</h1>
+            <form action="registercon.php" method="POST">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirmpassword" placeholder="Confirm Password" required>
+                <input type="submit" name="register" value="Sign Up">
+                <a href="login.html">Already have an account? Login here</a>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

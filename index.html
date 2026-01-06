@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Parlor - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans" rel="stylesheet">
+    
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans');
+
+        /* Reset Default Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Full-Screen Background */
+        .bgimage {
+            width: 100%;
+            height: 100vh;
+            background: url('img/img7.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        /* Overlay Effect */
+        .bgimage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Navigation Bar */
+        .menu {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2;
+        }
+
+        .leftmenu h4 {
+            color: #ffcc00;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .rightmenu ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .rightmenu ul li {
+            margin: 0 15px;
+        }
+
+        .rightmenu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .rightmenu ul li a:hover,
+        .rightmenu ul li a.active {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+
+        /* Welcome Text */
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .content h1 {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .content p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #ffcc00;
+            color: black;
+        }
+
+        .btn-primary:hover {
+            background: #ff9900;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #ff6600;
+        }
+
+        .btn-secondary:hover {
+            background: #ff3300;
+            color: white;
+        }
+
+        /* Team Section */
+        .team {
+            background: #f8f8f8;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .team h2 {
+            font-size: 36px;
+            color: #ff6600;
+            margin-bottom: 20px;
+        }
+
+        .team-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .team-member h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            color: gray;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Section -->
+    <div class="bgimage">
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <div class="leftmenu">
+                <h4>ICE CREAM PARLOUR</h4>
+            </div>
+            <div class="rightmenu">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="register.html">Sign Up</a></li>
+                    <li><a href="login.html">Login</a></li>
+					<li><a href="order1.html">Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Welcome Content -->
+        <div class="content">
+            <h1>Welcome to Ice Cream Paradise</h1>
+            <p>Enjoy the best flavors of happiness!</p>
+            <a href="register.html" class="btn btn-primary">Sign Up</a>
+            <a href="login.html" class="btn btn-secondary">Login</a>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div id="team" class="team">
+        <h2>Meet Our Team</h2>
+        <div class="team-cards">
+            <div class="team-member">
+                <img src="img/img1.png" alt="Team Member">
+                <h4>Gaytri Mate <h4>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="img/img1.png" alt="Team Member">
+                <h4>Sanchita Thakur</h4>
+                <p>Marketing Head</p>
+            </div>
+            <div class="team-member">
+                <img src="img/img1.png" alt="Team Member">
+                <h4>Rutuja Kharde</h4>
+                <p>Operations Manager</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 Ice Cream Parlor. All Rights Reserved.</p>
+    </div>
+
+</body>
+</html>

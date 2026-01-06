@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Ice Cream - Ice Cream Parlor</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        .order-container {
+            width: 80%;
+            margin: 50px auto;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .order-container h1 {
+            color: #ff6600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #ffcc00;
+            color: black;
+        }
+        .btn {
+            background: #ff6600;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background: #ff3300;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="order-container">
+        <h1>Order Your Ice Cream 🍦</h1>
+
+        <form action="order1.php" method="POST" onsubmit="return validateOrder()">
+            <table id="iceCreamTable">
+                <tr>
+                    <th>Select</th>
+                    <th>Ice Cream Flavor</th>
+                    <th>Price (₹)</th>
+                    <th>Quantity</th>
+                </tr>
+            </table>
+
+            <h2 id="totalPrice">Total: ₹0</h2>
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+    </div>
+
+    <script>
+       const flavors = [
+    { name: "Vanilla", price: 50 }, { name: "Chocolate", price: 60 }, { name: "Strawberry", price: 55 }, 
+    { name: "Mango", price: 65 }, { name: "Butterscotch", price: 70 }, { name: "Pistachio", price: 80 }, 
+    { name: "Blueberry", price: 75 }, { name: "Coffee", price: 85 }, { name: "Caramel", price: 90 }, 
+    { name: "Mint", price: 70 }, { name: "Hazelnut", price: 95 }, { name: "Coconut", price: 60 }, 
+    { name: "Black Currant", price: 80 }, { name: "Almond", price: 100 }, { name: "Raspberry", price: 85 }, 
+    { name: "Cherry", price: 90 }, { name: "Peach", price: 95 }, { name: "Lemon", price: 60 }, 
+    { name: "Gulab Jamun", price: 110 }, { name: "Kesar Pista", price: 120 }, { name: "Mawa Malai", price: 125 }, 
+    { name: "Cookies & Cream", price: 85 }, { name: "Tiramisu", price: 100 }, { name: "Brownie Fudge", price: 110 }, 
+    { name: "Nutella Swirl", price: 130 }
+];
+
+const table = document.getElementById("iceCreamTable");
+
+flavors.forEach(flavor => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td><input type="checkbox" class="icecream-checkbox" name="flavors[]" value="${flavor.name}" onchange="toggleQuantity(this)"></td>
+        <td>${flavor.name}</td>
+        <td>₹${flavor.price}</td>
+        <td><input type="number" class="quantity-input" name="qty[${flavor.name}]" min="1" max="10" value="1" disabled></td>
+    `;
+    table.appendChild(row);
+});
+
+// Function to enable/disable quantity input
+function toggleQuantity(checkbox) {
+    const row = checkbox.closest("tr");
+    const quantityInput = row.querySelector(".quantity-input");
+    
+    if (checkbox.checked) {
+        quantityInput.disabled = false;
+        quantityInput.value = 1; // Reset value when enabled
+    } else {
+        quantityInput.disabled = true;
+        quantityInput.value = 1; // Reset to default
+    }
+
+    calculateTotal();
+}
+
+// Function to calculate total dynamically
+function calculateTotal() {
+    let total = 0;
+    
+    document.querySelectorAll(".icecream-checkbox:checked").forEach(checkbox => {
+        const row = checkbox.closest("tr");
+        const price = parseInt(row.cells[2].innerText.replace("₹", ""), 10);
+        const quantity = parseInt(row.querySelector(".quantity-input").value, 10) || 0;
+        total += price * quantity;
+    });
+
+    document.getElementById("totalPrice").innerText = "Total: ₹" + total;
+}
+
+// Attach event listener to all quantity inputs (handles issue where only some work)
+document.addEventListener("input", function(event) {
+    if (event.target.classList.contains("quantity-input")) {
+        calculateTotal();
+    }
+});
+
+    </script>
+
+</body>
+</html>
